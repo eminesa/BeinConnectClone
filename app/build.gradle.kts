@@ -1,4 +1,3 @@
-import org.jetbrains.kotlin.gradle.utils.loadPropertyFromResources
 import java.util.Properties
 
 plugins {
@@ -34,11 +33,11 @@ android {
     buildTypes {
 
         debug {
-            buildConfigField("String", "BASE_URL","\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
             buildConfigField("String", "API_KEY", apiKey)
         }
         release {
-            buildConfigField("String", "BASE_URL","\"https://api.themoviedb.org/3/\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
             buildConfigField("String", "API_KEY", apiKey)
 
             isMinifyEnabled = false
@@ -89,4 +88,7 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.okhttp)
 
- }
+    //navigation
+    implementation(libs.androidx.navigation.fragment)
+    implementation(libs.androidx.navigation.ui)
+}

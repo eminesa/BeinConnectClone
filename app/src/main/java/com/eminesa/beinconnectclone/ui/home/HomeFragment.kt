@@ -12,7 +12,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun FragmentHomeBinding.bindScreen() {
         viewModel.getMovie()
-        //tvName.text = viewModel.homeState.value.movieData
+       tvName.text = "Nav Ok"
     }
 
 }
