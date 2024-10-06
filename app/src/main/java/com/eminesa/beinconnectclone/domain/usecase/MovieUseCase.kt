@@ -10,7 +10,7 @@ import javax.inject.Inject
 class MovieUseCase @Inject constructor(
     private val movieRepository: MovieRepository
 ) {
-    operator fun invoke(): Flow<Resource<List<ResultItem>>>  = flow{ // veri üzerinde bir işlem yapmak istiyorsan(collect) burada flow ile emit üzerinde gideceksin
-        emit(movieRepository.getMovie())
+    operator fun invoke(genre: Int): Flow<Resource<List<ResultItem>>>  = flow{ // veri üzerinde bir işlem yapmak istiyorsan(collect) burada flow ile emit üzerinde gideceksin
+        emit(movieRepository.getMovie(genre))
     }
 }

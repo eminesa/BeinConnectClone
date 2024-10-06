@@ -2,7 +2,9 @@ package com.eminesa.beinconnectclone.data.mapper
 
 import com.eminesa.beinconnectclone.common.orFalse
 import com.eminesa.beinconnectclone.common.orZero
+import com.eminesa.beinconnectclone.data.dto.GenreItemResponse
 import com.eminesa.beinconnectclone.data.dto.MovieItem
+import com.eminesa.beinconnectclone.domain.model.GenreItem
 import com.eminesa.beinconnectclone.domain.model.ResultItem
 
 fun List<MovieItem>?.toMovie(): List<ResultItem> {
@@ -28,5 +30,16 @@ fun List<MovieItem>?.toMovie(): List<ResultItem> {
             )
         }
 
+    } ?: emptyList()
+}
+
+fun List<GenreItemResponse>?.toGenre(): List<GenreItem> {
+    return this?.map { genre ->
+        with(genre) {
+            GenreItem(
+                id = id.orZero(),
+                name = name.orEmpty()
+            )
+        }
     } ?: emptyList()
 }

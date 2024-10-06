@@ -11,7 +11,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     private val viewModel: HomeViewModel by viewModels()
 
     override fun FragmentHomeBinding.bindScreen() {
-        viewModel.getMovie()
+
+       viewModel.getGenre()
+
+
        tvName.text = "Nav Ok"
     }
 
