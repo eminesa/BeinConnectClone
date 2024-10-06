@@ -41,7 +41,6 @@ class HomeViewModel @Inject constructor(
 
                 result.onSuccess {
                     _genreState.value = genreState.value.copy(movieData = it)
-
                     println(result.toString())
                 }.onFailure {
                     println(result.toString())

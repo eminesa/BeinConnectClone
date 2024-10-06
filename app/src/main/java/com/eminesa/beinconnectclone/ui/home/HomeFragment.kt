@@ -12,10 +12,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun FragmentHomeBinding.bindScreen() {
 
-       viewModel.getGenre()
-
-
-       tvName.text = "Nav Ok"
+        // Başlığı değiştirme
+        customToolbar.setTitle("Yeni Başlık")
+        viewModel.getGenre()
     }
 
 }

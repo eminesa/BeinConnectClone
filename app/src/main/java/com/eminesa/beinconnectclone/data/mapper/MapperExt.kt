@@ -10,7 +10,6 @@ import com.eminesa.beinconnectclone.domain.model.ResultItem
 fun List<MovieItem>?.toMovie(): List<ResultItem> {
     return this?.map { movie ->
         // data katmanindan UI'a veri hazırligi
-        //
         with(movie) {
             ResultItem(
                 adult = adult.orFalse(),
