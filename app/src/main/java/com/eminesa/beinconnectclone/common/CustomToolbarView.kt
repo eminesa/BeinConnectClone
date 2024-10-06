@@ -1,6 +1,7 @@
 package com.eminesa.beinconnectclone.common
 
 import android.content.Context
+import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -19,10 +20,19 @@ class CustomToolbar @JvmOverloads constructor(
     private var toolbarTitle: String? = null
     private var toolbarBackgroundColor: Int = context.getColor(R.color.orange)
 
+    private var textPaint: Paint = Paint().apply {
+        color = context.getColor(R.color.white)
+        textSize = 20f
+    }
+
     init {
         context.theme.obtainStyledAttributes(attrs, R.styleable.CustomToolbar, 0, 0).apply {
             try {
                 toolbarTitle = getString(R.styleable.CustomToolbar_ct_title) ?: "Default Title"
+                toolbarBackgroundColor = getColor(
+                    R.styleable.CustomToolbar_ct_backgroundColor,
+                    context.getColor(R.color.orange)
+                )
 
                 // Apply attributes to the view
                 binding.txtTitle.text = toolbarTitle
@@ -50,4 +60,5 @@ class CustomToolbar @JvmOverloads constructor(
     override fun setBackgroundColor(color: Int) {
         binding.root.setBackgroundColor(color)
     }
+
 }

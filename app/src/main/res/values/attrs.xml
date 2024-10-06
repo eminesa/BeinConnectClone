@@ -3,5 +3,6 @@
 <resources>
     <declare-styleable name="CustomToolbar">
         <attr name="ct_title" format="string"/>
+        <attr name="ct_backgroundColor" format="color"/>
     </declare-styleable>
 </resources>
