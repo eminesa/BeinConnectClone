@@ -9,7 +9,7 @@ fun Int?.orZero() = this ?: 0
 fun Double?.orZero() = this ?: 0.0
 
 fun String.createPosterUrl(): String {
-    val baseUrl = "http://image.tmdb.org/t/p/w185/"
+    val baseUrl = "https://image.tmdb.org/t/p/w185/"
     return baseUrl + this
 }
 

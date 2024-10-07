@@ -5,4 +5,7 @@
     <string name="back_button">Back Button</string>
     <string name="title">Title</string>
     <string name="film">FILM</string>
+    <string name="foreign_film">Yabancı Film</string>
+    <string name="domestic_film">Yerli Film</string>
+    <string name="descriptive">Betimleme</string>
 </resources>

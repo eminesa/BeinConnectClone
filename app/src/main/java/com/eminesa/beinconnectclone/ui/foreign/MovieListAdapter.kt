@@ -11,7 +11,6 @@ import com.eminesa.beinconnectclone.common.createPosterUrl
 import com.eminesa.beinconnectclone.databinding.ItemViewMovieBinding
 import com.eminesa.beinconnectclone.domain.model.ResultItem
 
-
 class MovieListAdapter(
     private val onItemClicked: (ResultItem) -> Unit
 ) : ListAdapter<ResultItem, MovieListAdapter.MovieViewHolder>(ResultItemDiffCallback()) {
@@ -20,10 +19,13 @@ class MovieListAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(resultItem: ResultItem) {
-            val poster = resultItem.posterPath.createPosterUrl()
+        val poster = resultItem.posterPath.createPosterUrl()
 
             binding.apply {
-                imgPoster.load(poster)
+                imgPoster.load(poster){
+                    placeholder(R.drawable.ic_launcher_background)
+                    error(R.drawable.ic_back)
+                }
                 txtTitle.text = resultItem.title
                 root.setOnClickListener {
                     onItemClicked(resultItem)
@@ -47,7 +49,7 @@ class MovieListAdapter(
 
 class ResultItemDiffCallback : DiffUtil.ItemCallback<ResultItem>() {
     override fun areItemsTheSame(oldItem: ResultItem, newItem: ResultItem): Boolean {
-        return oldItem.title == newItem.title
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(oldItem: ResultItem, newItem: ResultItem): Boolean {

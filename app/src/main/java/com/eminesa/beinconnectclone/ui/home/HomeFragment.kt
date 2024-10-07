@@ -1,6 +1,5 @@
 package com.eminesa.beinconnectclone.ui.home
 
-import androidx.fragment.app.viewModels
 import com.eminesa.beinconnectclone.R
 import com.eminesa.beinconnectclone.common.DemoCollectionAdapter
 import com.eminesa.beinconnectclone.databinding.FragmentHomeBinding
@@ -15,12 +14,10 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate) {
 
-    private val viewModel: HomeViewModel by viewModels()
-
     override fun FragmentHomeBinding.bindScreen() {
 
         // Başlığı değiştirme
-        customToolbar.setTitle("Film")
+        customToolbar.setTitle(getString(R.string.film))
 
         //viewPager
         val fragments = listOf(
@@ -36,12 +33,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.text = "Yabancı Film"
+                    tab.text = getString(R.string.foreign_film)
                     tab.view.setBackgroundResource(R.drawable.tab_selected_background)
                 }
-
-                1 -> tab.text = "Yerli Film"
-                2 -> tab.text = "Betimleme"
+                1 -> tab.text = getString(R.string.domestic_film)
+                2 -> tab.text = getString(R.string.descriptive)
                 else -> tab.text = ""
             }
 
