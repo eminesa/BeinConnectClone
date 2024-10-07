@@ -1,10 +1,8 @@
 <resources>
     <string name="app_name">BeinConnectClone</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="back_button">Back Button</string>
     <string name="title">Title</string>
-    <string name="film">FILM</string>
+    <string name="movie">FILM</string>
     <string name="foreign_film">Yabancı Film</string>
     <string name="domestic_film">Yerli Film</string>
     <string name="descriptive">Betimleme</string>

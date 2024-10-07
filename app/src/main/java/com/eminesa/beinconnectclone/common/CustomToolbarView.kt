@@ -40,12 +40,11 @@ class CustomToolbar @JvmOverloads constructor(
 
                 // Listener for the back button (optional)
                 binding.imgBack.setOnClickListener {
-                    // Handle back button click
                 }
 
-                // Listener for the search button (optional)
+                // Listener for the search button
                 binding.imgSearch.setOnClickListener {
-                    // Handle search button click
+
                 }
             } finally {
                 recycle()

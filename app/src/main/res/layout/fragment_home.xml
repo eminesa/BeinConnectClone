@@ -11,7 +11,7 @@
         android:layout_width="0dp"
         android:layout_height="46dp"
         app:ct_backgroundColor="@color/transparent"
-        app:ct_title="@string/film"
+        app:ct_title="@string/movie"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

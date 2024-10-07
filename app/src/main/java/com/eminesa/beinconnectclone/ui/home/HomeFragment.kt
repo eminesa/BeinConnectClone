@@ -17,7 +17,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun FragmentHomeBinding.bindScreen() {
 
         // Başlığı değiştirme
-        customToolbar.setTitle(getString(R.string.film))
+        customToolbar.setTitle(getString(R.string.movie))
 
         //viewPager
         val fragments = listOf(
