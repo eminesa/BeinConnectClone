@@ -23,8 +23,8 @@ class HomeViewModel @Inject constructor(
     private val genreUseCase: GenreUseCase
 ) : ViewModel() {
 
-    private val _homeState: MutableStateFlow<HomeState> = MutableStateFlow(HomeState())
-    val homeState: StateFlow<HomeState> = _homeState
+    private val _movieState: MutableStateFlow<MovieState> = MutableStateFlow(MovieState())
+    val movieState: StateFlow<MovieState> = _movieState
 
     private val _genreState: MutableStateFlow<GenreState> = MutableStateFlow(GenreState())
     val genreState: StateFlow<GenreState> = _genreState
@@ -40,7 +40,7 @@ class HomeViewModel @Inject constructor(
             .onEach { result ->
 
                 result.onSuccess {
-                    _genreState.value = genreState.value.copy(movieData = it)
+                    _genreState.value = genreState.value.copy(genreData = it)
                     println(result.toString())
                 }.onFailure {
                     println(result.toString())
@@ -53,15 +53,15 @@ class HomeViewModel @Inject constructor(
     fun getMovie(genre: Int) { //responslu bir şey istiyorsan Flow döndür
         movieUseCase(genre)
             .onStart {
-                _homeState.value = homeState.value.copy(isLoading = true)
+                _movieState.value = movieState.value.copy(isLoading = true)
             }
             .onCompletion {
-                _homeState.value = homeState.value.copy(isLoading = false)
+                _movieState.value = movieState.value.copy(isLoading = false)
             }
             .onEach { result ->
 
                 result.onSuccess {
-                    _homeState.value = homeState.value.copy(movieData = it)
+                    _movieState.value = movieState.value.copy(movieData = it)
                     println(result.toString())
                 }.onFailure {
                     println(result.toString())
@@ -72,12 +72,12 @@ class HomeViewModel @Inject constructor(
     }
 }
 
-data class HomeState(
+data class MovieState(
     val isLoading: Boolean = false,
     val movieData: List<ResultItem> = emptyList()
 )
 
 data class GenreState(
     val isLoading: Boolean = false,
-    val movieData: List<GenreItem> = emptyList()
+    val genreData: List<GenreItem> = emptyList()
 )

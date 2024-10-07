@@ -2,6 +2,7 @@ package com.eminesa.beinconnectclone.ui.home
 
 import androidx.fragment.app.viewModels
 import com.eminesa.beinconnectclone.R
+import com.eminesa.beinconnectclone.common.DemoCollectionAdapter
 import com.eminesa.beinconnectclone.databinding.FragmentHomeBinding
 import com.eminesa.beinconnectclone.ui.base.BaseFragment
 import com.eminesa.beinconnectclone.ui.descriptive.DescriptiveMovieFragment
@@ -19,7 +20,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
     override fun FragmentHomeBinding.bindScreen() {
 
         // Başlığı değiştirme
-        customToolbar.setTitle("Yeni Başlık")
+        customToolbar.setTitle("Film")
 
         //viewPager
         val fragments = listOf(
@@ -27,9 +28,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             DomesticMovieFragment(),
             DescriptiveMovieFragment()
         )
+
         val adapter = DemoCollectionAdapter(this@HomeFragment, fragments)
         viewPager.adapter = adapter
-
 
         // TabLayout ve ViewPager2'yi bağlama
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
@@ -45,7 +46,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
             }
 
         }.attach()
-
 
         // Seçili sekmenin arka planını özelleştirme
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {

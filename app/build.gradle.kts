@@ -91,4 +91,8 @@ dependencies {
     //navigation
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+
+    //coil
+    implementation(libs.coil)
+
 }
