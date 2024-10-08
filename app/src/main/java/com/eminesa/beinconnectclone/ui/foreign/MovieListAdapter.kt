@@ -19,7 +19,8 @@ class MovieListAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(resultItem: ResultItem) {
-        val poster = resultItem.posterPath.createPosterUrl()
+
+            val poster = resultItem.posterPath.createPosterUrl()
 
             binding.apply {
                 imgPoster.load(poster){

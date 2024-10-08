@@ -29,12 +29,13 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideOkHttpClientBuilder(): OkHttpClient = OkHttpClient.Builder()
-        .readTimeout(20, TimeUnit.SECONDS)
-        .connectTimeout(20, TimeUnit.SECONDS)
+        .readTimeout(60, TimeUnit.SECONDS)
+        .connectTimeout(60, TimeUnit.SECONDS)
         .addInterceptor(
             Interceptor { chain ->
                 val currentUrl = chain.request().url
-                val newUrl = currentUrl.newBuilder().addQueryParameter("api_key", BuildConfig.API_KEY)
+                val newUrl =
+                    currentUrl.newBuilder().addQueryParameter("api_key", BuildConfig.API_KEY)
                         .build()
                 val currentRequest = chain.request().newBuilder()
                 val newRequest = currentRequest.url(newUrl).build()

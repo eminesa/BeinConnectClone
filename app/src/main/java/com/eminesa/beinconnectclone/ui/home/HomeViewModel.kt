@@ -67,7 +67,6 @@ class HomeViewModel @Inject constructor(
                     println(result.toString())
                 }
 
-
             }.launchIn(viewModelScope)
     }
 }

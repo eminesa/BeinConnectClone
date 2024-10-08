@@ -6,4 +6,20 @@
     <string name="foreign_film">Yabancı Film</string>
     <string name="domestic_film">Yerli Film</string>
     <string name="descriptive">Betimleme</string>
+    <string name="media_url">https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8</string>
+
+    <string name="previous_video">Previous video</string>
+    <string name="play_video">Play video</string>
+    <string name="pause_video">Pause video</string>
+    <string name="next_video">Next video</string>
+    <string name="ten_second_next">Ten second next</string>
+    <string name="ten_second_previous">Ten second previous</string>
+    <string name="full_screen">Full screen</string>
+    <string name="cut_point">/</string>
+    <string name="red">Red</string>
+    <string name="blue">Blue</string>
+    <string name="green">Green</string>
+    <string name="rewind_10_seconds">10 saniye geri al</string>
+    <string name="forward_10_seconds">10 saniye ileri al</string>
+
 </resources>

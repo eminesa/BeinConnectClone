@@ -3,8 +3,13 @@
     <color name="black">#FF000000</color>
     <color name="light_black">#1B1B1B</color>
     <color name="gray">#80B9B9B9</color>
+    <color name="light_gray">#33B9B9B9</color>
     <color name="white">#FFFFFFFF</color>
     <color name="orange">#FF3D00</color>
+    <color name="red">#9E0825</color>
+    <color name="live_red">#9E0825</color>
     <color name="transparent">#00FF3D00</color>
+    <color name="white_50">#80FFFFFF</color>
+    <color name="white_20">#33FFFFFF</color>
 
 </resources>
