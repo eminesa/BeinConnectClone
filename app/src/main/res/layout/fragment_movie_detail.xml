@@ -7,7 +7,7 @@
     android:background="@android:color/black">
 
     <androidx.media3.ui.PlayerView
-        android:id="@+id/video_view"
+        android:id="@+id/playerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:auto_show="true"
@@ -18,5 +18,15 @@
         app:rewind_icon="@drawable/ic_exo_icon_rewind"
         app:surface_type="surface_view"
         app:use_controller="true" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
