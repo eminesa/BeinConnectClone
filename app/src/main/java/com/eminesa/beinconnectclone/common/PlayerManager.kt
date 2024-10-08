@@ -3,6 +3,7 @@ package com.eminesa.beinconnectclone.common
 import android.content.Context
 import androidx.annotation.OptIn
 import androidx.media3.common.MediaItem
+import androidx.media3.common.Player
 import androidx.media3.common.util.UnstableApi
 import androidx.media3.datasource.DefaultHttpDataSource
 import androidx.media3.exoplayer.ExoPlayer
@@ -13,6 +14,8 @@ class PlayerManager(private val context: Context) {
     private var playbackPosition = 0L
     private var playWhenReady = true
 
+    var progressVisibleListener: ((isProgressVisible: Boolean) -> Unit)? = null
+
     @OptIn(UnstableApi::class)
     fun preparePlayer(mediaUrl: String) {
 
@@ -21,16 +24,44 @@ class PlayerManager(private val context: Context) {
             .setSeekForwardIncrementMs(10000)
             .build()
 
+        playerListener()
+
         val mediaItem = MediaItem.fromUri(mediaUrl)
         val defaultHttpDataSourceFactory = DefaultHttpDataSource.Factory()
         val mediaSource =
             HlsMediaSource.Factory(defaultHttpDataSourceFactory).createMediaSource(mediaItem)
 
-        exoPlayer?.setMediaSource(mediaSource)
-        exoPlayer?.seekTo(playbackPosition)
-        exoPlayer?.playWhenReady = playWhenReady
-        exoPlayer?.prepare()
+        exoPlayer?.apply {
+            setMediaSource(mediaSource)
+            seekTo(playbackPosition)
+            playWhenReady = playWhenReady
+            prepare()
+        }
 
+    }
+
+    private fun playerListener() {
+        exoPlayer?.addListener(object : Player.Listener {
+            override fun onPlaybackStateChanged(playbackState: Int) {
+                when (playbackState) {
+                    Player.STATE_BUFFERING -> {
+                        progressVisibleListener?.invoke(true)
+                    }
+
+                    Player.STATE_READY -> {
+                        progressVisibleListener?.invoke(false)
+                    }
+
+                    Player.STATE_ENDED -> {
+                        progressVisibleListener?.invoke(false)
+                    }
+
+                    Player.STATE_IDLE -> {
+                        progressVisibleListener?.invoke(false)
+                    }
+                }
+            }
+        })
     }
 
     fun releasePlayer() {

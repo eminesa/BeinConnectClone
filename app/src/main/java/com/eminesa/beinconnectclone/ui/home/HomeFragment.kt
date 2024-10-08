@@ -16,10 +16,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
     override fun FragmentHomeBinding.bindScreen() {
 
-        // Başlığı değiştirme
         customToolbar.setTitle(getString(R.string.movie))
 
-        //viewPager
         val fragments = listOf(
             ForeignMovieFragment(),
             DomesticMovieFragment(),
@@ -29,13 +27,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
         val adapter = DemoCollectionAdapter(this@HomeFragment, fragments)
         viewPager.adapter = adapter
 
-        // TabLayout ve ViewPager2'yi bağlama
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
                 0 -> {
                     tab.text = getString(R.string.foreign_film)
                     tab.view.setBackgroundResource(R.drawable.tab_selected_background)
                 }
+
                 1 -> tab.text = getString(R.string.domestic_film)
                 2 -> tab.text = getString(R.string.descriptive)
                 else -> tab.text = ""
@@ -43,7 +41,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         }.attach()
 
-        // Seçili sekmenin arka planını özelleştirme
+        viewPager.isUserInputEnabled = false
+
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab) {
                 tab.view.setBackgroundResource(R.drawable.tab_selected_background)

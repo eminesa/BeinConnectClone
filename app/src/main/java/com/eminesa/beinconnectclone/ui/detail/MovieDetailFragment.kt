@@ -3,7 +3,7 @@ package com.eminesa.beinconnectclone.ui.detail
 import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
-import androidx.media3.common.Player
+import androidx.core.view.isVisible
 import androidx.navigation.fragment.findNavController
 import com.eminesa.beinconnectclone.R
 import com.eminesa.beinconnectclone.common.PlayerManager
@@ -20,37 +20,16 @@ class MovieDetailFragment :
     private lateinit var exoPlayerManager: PlayerManager
 
     override fun FragmentMovieDetailBinding.bindScreen() {
-        exoPlayerManager = PlayerManager(requireContext())
-        exoPlayerManager.preparePlayer(getString(R.string.media_url))
+        initBinding()
+        initListener()
+    }
 
-        playerView.player = exoPlayerManager.getPlayer()
+    private fun FragmentMovieDetailBinding.initListener() {
+        exoPlayerManager.progressVisibleListener = { isProgressVisible ->
+            progressBar.isVisible = isProgressVisible
+        }
 
-        exoPlayerManager.getPlayer()?.addListener(object : Player.Listener {
-            override fun onPlaybackStateChanged(playbackState: Int) {
-                when (playbackState) {
-                    Player.STATE_BUFFERING -> {
-                        progressBar.visible()
-                        // Video buffering, loading spinner gösterebilirsiniz.
-                    }
-
-                    Player.STATE_READY -> {
-                        progressBar.gone()
-                        // Player hazır, player view'i görünür yapın.
-                    }
-
-                    Player.STATE_ENDED -> {
-                        progressBar.gone()
-                        // Video sona erdi.
-                    }
-
-                    Player.STATE_IDLE -> {
-                        progressBar.gone()
-                        // Player idle durumda.
-                    }
-                }
-            }
-        })
-
+        //exoplayer components listener
         val headerTextView = playerView.findViewById<AppCompatTextView>(R.id.header_tv)
         val closeImg = playerView.findViewById<AppCompatImageView>(R.id.cross_im)
         val exoPauseBtn = playerView.findViewById<ImageButton>(R.id.exo_pause)
@@ -69,6 +48,18 @@ class MovieDetailFragment :
 
         exoPauseBtn.setOnClickListener {
             controlPlay(exoPauseBtn, exoPlayBtn)
+        }
+
+    }
+
+    private fun FragmentMovieDetailBinding.initBinding() {
+
+        exoPlayerManager = PlayerManager(requireContext())
+        exoPlayerManager.apply {
+            preparePlayer(getString(R.string.media_url))
+            playerView.player = getPlayer()
+
+
         }
     }
 
