@@ -23,18 +23,21 @@ class ForeignMovieFragment : BaseFragment<FragmentForeignMovieBinding>(
     override fun FragmentForeignMovieBinding.bindScreen() {
 
         viewModel.getGenre()
-
-        movieAdapter = MovieAdapter(onItemClicked = {
-            val movieTitle: String = it.title
-            val bundle = Bundle().apply { putString("movieTitle", movieTitle) }
-
-            findNavController().navigate(
-                R.id.action_homeFragment_to_movieDetailFragment,
-                bundle
-            )
-        })
+        movieAdapter = movieAdapter()
         listenGenre()
     }
+
+    private fun movieAdapter() = MovieAdapter(onItemClicked = {
+
+        val movieTitle: String = it.title
+        val bundle = Bundle().apply { putString("movieTitle", movieTitle) }
+
+        findNavController().navigate(
+            R.id.action_homeFragment_to_movieDetailFragment,
+            bundle
+        )
+
+    })
 
     private fun FragmentForeignMovieBinding.listenGenre() {
 
@@ -46,6 +49,5 @@ class ForeignMovieFragment : BaseFragment<FragmentForeignMovieBinding>(
             }
         }
     }
-
 
 }
