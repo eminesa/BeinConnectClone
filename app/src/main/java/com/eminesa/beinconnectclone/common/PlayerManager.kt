@@ -36,6 +36,7 @@ class PlayerManager(private val context: Context) {
             seekTo(playbackPosition)
             playWhenReady = playWhenReady
             prepare()
+            play()
         }
 
     }
