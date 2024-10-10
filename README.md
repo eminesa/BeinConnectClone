@@ -4,7 +4,7 @@ This repository contains the **Bein Connect Clone App**, which uses the [The Mov
 
 * Listed movies by category.
 
-* used "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8" to play HLS media URL type on custom view MediaPayer 
+* Used "https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8" to play HLS media URL type on custom view MediaPayer 
 
 ## Screen Shoots
  
