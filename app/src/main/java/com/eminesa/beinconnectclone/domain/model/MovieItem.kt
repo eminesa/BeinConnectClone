@@ -1,7 +1,7 @@
 package com.eminesa.beinconnectclone.domain.model
 
 
-data class ResultItem(
+data class MovieItem(
     val adult: Boolean = false,
     val backdropPath: String = "",
     val genreIds: List<Int> = listOf(),
@@ -16,4 +16,4 @@ data class ResultItem(
     val video: Boolean = false,
     val voteAverage: Double = 0.0,
     val voteCount: Int = 0
-)
+) : MultiViewItem

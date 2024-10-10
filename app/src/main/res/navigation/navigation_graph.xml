@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.eminesa.beinconnectclone.ui.home.HomeFragment"
+        android:name="com.eminesa.beinconnectclone.ui.view.home.HomeFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home">
         <action
@@ -17,7 +17,7 @@
 
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.eminesa.beinconnectclone.ui.detail.MovieDetailFragment"
+        android:name="com.eminesa.beinconnectclone.ui.view.detail.MovieDetailFragment"
         android:label="fragment_movie_detail"
         tools:layout="@layout/fragment_movie_detail" />
 </navigation>

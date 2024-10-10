@@ -1,4 +1,4 @@
-package com.eminesa.beinconnectclone.common
+package com.eminesa.beinconnectclone.ui.adapter
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter

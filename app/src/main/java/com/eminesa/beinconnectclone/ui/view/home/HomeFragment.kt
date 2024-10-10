@@ -1,12 +1,12 @@
-package com.eminesa.beinconnectclone.ui.home
+package com.eminesa.beinconnectclone.ui.view.home
 
 import com.eminesa.beinconnectclone.R
-import com.eminesa.beinconnectclone.common.DemoCollectionAdapter
+import com.eminesa.beinconnectclone.ui.adapter.DemoCollectionAdapter
 import com.eminesa.beinconnectclone.databinding.FragmentHomeBinding
 import com.eminesa.beinconnectclone.ui.base.BaseFragment
-import com.eminesa.beinconnectclone.ui.descriptive.DescriptiveMovieFragment
-import com.eminesa.beinconnectclone.ui.domestic.DomesticMovieFragment
-import com.eminesa.beinconnectclone.ui.foreign.ForeignMovieFragment
+import com.eminesa.beinconnectclone.ui.view.descriptive.DescriptiveMovieFragment
+import com.eminesa.beinconnectclone.ui.view.domestic.DomesticMovieFragment
+import com.eminesa.beinconnectclone.ui.view.foreign.ForeignMovieFragment
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import dagger.hilt.android.AndroidEntryPoint

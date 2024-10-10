@@ -1,4 +1,4 @@
-package com.eminesa.beinconnectclone.ui.detail
+package com.eminesa.beinconnectclone.ui.view.detail
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

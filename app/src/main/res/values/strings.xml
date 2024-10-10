@@ -22,4 +22,6 @@
     <string name="rewind_10_seconds">10 saniye geri al</string>
     <string name="forward_10_seconds">10 saniye ileri al</string>
 
+    <string name="something_went_wrong">Bir şeyler Hatalı</string>
+
 </resources>

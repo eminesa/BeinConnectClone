@@ -9,7 +9,7 @@
     <androidx.media3.ui.PlayerView
         android:id="@+id/playerView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:auto_show="true"
         app:controller_layout_id="@layout/custom_player"
         app:fastforward_icon="@drawable/ic_exo_icon_fastforward"

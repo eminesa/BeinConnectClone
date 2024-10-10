@@ -5,13 +5,11 @@ import com.eminesa.beinconnectclone.common.orZero
 import com.eminesa.beinconnectclone.data.dto.GenreItemResponse
 import com.eminesa.beinconnectclone.data.dto.MovieItem
 import com.eminesa.beinconnectclone.domain.model.GenreItem
-import com.eminesa.beinconnectclone.domain.model.ResultItem
 
-fun List<MovieItem>?.toMovie(): List<ResultItem> {
+fun List<MovieItem>?.toMovie(): List<com.eminesa.beinconnectclone.domain.model.MovieItem> {
     return this?.map { movie ->
-        // data katmanindan UI'a veri hazırligi
         with(movie) {
-            ResultItem(
+            com.eminesa.beinconnectclone.domain.model.MovieItem(
                 adult = adult.orFalse(),
                 backdropPath = backdropPath.orEmpty(),
                 genreIds = genreIds?.map { it.orZero() }.orEmpty(),
@@ -28,7 +26,6 @@ fun List<MovieItem>?.toMovie(): List<ResultItem> {
                 voteCount = voteCount.orZero(),
             )
         }
-
     } ?: emptyList()
 }
 

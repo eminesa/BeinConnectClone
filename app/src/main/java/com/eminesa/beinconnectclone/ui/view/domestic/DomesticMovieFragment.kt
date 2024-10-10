@@ -1,4 +1,4 @@
-package com.eminesa.beinconnectclone.ui.domestic
+package com.eminesa.beinconnectclone.ui.view.domestic
 
 import com.eminesa.beinconnectclone.databinding.FragmentDomesticMovieBinding
 import com.eminesa.beinconnectclone.ui.base.BaseFragment

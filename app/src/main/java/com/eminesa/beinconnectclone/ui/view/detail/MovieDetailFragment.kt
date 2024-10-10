@@ -1,4 +1,4 @@
-package com.eminesa.beinconnectclone.ui.detail
+package com.eminesa.beinconnectclone.ui.view.detail
 
 import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageView
@@ -29,13 +29,14 @@ class MovieDetailFragment :
             progressBar.isVisible = isProgressVisible
         }
 
-        //exoplayer components listener
+        //exoplayer components listener // Bunu sonra custom yapıcam diger turlu
         val headerTextView = playerView.findViewById<AppCompatTextView>(R.id.header_tv)
         val closeImg = playerView.findViewById<AppCompatImageView>(R.id.cross_im)
         val exoPauseBtn = playerView.findViewById<ImageButton>(R.id.exo_pause)
         val exoPlayBtn = playerView.findViewById<ImageButton>(R.id.exo_play)
 
-        headerTextView.text = "New Dynamic Text"
+        val movieTitle = arguments?.getString("movieTitle")
+        headerTextView.text = movieTitle
 
         closeImg.setOnClickListener {
             releasePlayer()
@@ -53,12 +54,10 @@ class MovieDetailFragment :
     }
 
     private fun FragmentMovieDetailBinding.initBinding() {
-
         exoPlayerManager = PlayerManager(requireContext())
         exoPlayerManager.apply {
             preparePlayer(getString(R.string.media_url))
             playerView.player = getPlayer()
-
 
         }
     }
@@ -98,4 +97,5 @@ class MovieDetailFragment :
         super.onDestroyView()
         releasePlayer()
     }
+
 }

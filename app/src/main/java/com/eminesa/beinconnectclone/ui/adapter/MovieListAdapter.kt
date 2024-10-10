@@ -1,29 +1,28 @@
-package com.eminesa.beinconnectclone.ui.foreign
+package com.eminesa.beinconnectclone.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.eminesa.beinconnectclone.R
 import com.eminesa.beinconnectclone.common.createPosterUrl
 import com.eminesa.beinconnectclone.databinding.ItemViewMovieBinding
-import com.eminesa.beinconnectclone.domain.model.ResultItem
+import com.eminesa.beinconnectclone.domain.model.MovieItem
 
 class MovieListAdapter(
-    private val onItemClicked: (ResultItem) -> Unit
-) : ListAdapter<ResultItem, MovieListAdapter.MovieViewHolder>(ResultItemDiffCallback()) {
+    private val onItemClicked: (MovieItem) -> Unit
+) : ListAdapter<MovieItem, MovieListAdapter.MovieViewHolder>(ResultItemDiffCallback) {
 
     inner class MovieViewHolder(private val binding: ItemViewMovieBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(resultItem: ResultItem) {
+        fun bind(resultItem: MovieItem) {
 
             val poster = resultItem.posterPath.createPosterUrl()
 
             binding.apply {
-                imgPoster.load(poster){
+                imgPoster.load(poster) {
                     placeholder(R.drawable.ic_launcher_background)
                     error(R.drawable.ic_back)
                 }
@@ -32,7 +31,6 @@ class MovieListAdapter(
                     onItemClicked(resultItem)
                 }
             }
-
         }
     }
 
@@ -45,15 +43,5 @@ class MovieListAdapter(
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val resultItem = getItem(position)
         holder.bind(resultItem)
-    }
-}
-
-class ResultItemDiffCallback : DiffUtil.ItemCallback<ResultItem>() {
-    override fun areItemsTheSame(oldItem: ResultItem, newItem: ResultItem): Boolean {
-        return oldItem.id == newItem.id
-    }
-
-    override fun areContentsTheSame(oldItem: ResultItem, newItem: ResultItem): Boolean {
-        return oldItem == newItem
     }
 }
