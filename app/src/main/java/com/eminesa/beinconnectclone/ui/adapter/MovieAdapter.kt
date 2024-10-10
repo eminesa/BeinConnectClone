@@ -10,6 +10,7 @@ import com.eminesa.beinconnectclone.domain.model.GenreItem
 import com.eminesa.beinconnectclone.domain.model.MovieItem
 import com.eminesa.beinconnectclone.domain.model.MovieListItem
 import com.eminesa.beinconnectclone.domain.model.MultiViewItem
+import com.eminesa.beinconnectclone.ui.enums.MovieType
 
 class MovieAdapter(
     private val onItemClicked: (MovieItem) -> Unit
@@ -80,7 +81,5 @@ class MovieAdapter(
         }
     }
 
-    enum class MovieType(value: Int) {
-        TITLE(0), MOVIE(1)
-    }
+
 }

@@ -1,9 +1,10 @@
 package com.eminesa.beinconnectclone.ui.view.home
 
 import com.eminesa.beinconnectclone.R
-import com.eminesa.beinconnectclone.ui.adapter.DemoCollectionAdapter
 import com.eminesa.beinconnectclone.databinding.FragmentHomeBinding
+import com.eminesa.beinconnectclone.ui.adapter.DemoCollectionAdapter
 import com.eminesa.beinconnectclone.ui.base.BaseFragment
+import com.eminesa.beinconnectclone.ui.enums.TabType
 import com.eminesa.beinconnectclone.ui.view.descriptive.DescriptiveMovieFragment
 import com.eminesa.beinconnectclone.ui.view.domestic.DomesticMovieFragment
 import com.eminesa.beinconnectclone.ui.view.foreign.ForeignMovieFragment
@@ -29,14 +30,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
 
         TabLayoutMediator(tabLayout, viewPager) { tab, position ->
             when (position) {
-                0 -> {
-                    tab.text = getString(R.string.foreign_film)
+                TabType.FOREIGN_MOVIE.ordinal -> {
+                    tab.text = getString(R.string.foreign_movie)
                     tab.view.setBackgroundResource(R.drawable.tab_selected_background)
                 }
 
-                1 -> tab.text = getString(R.string.domestic_film)
-                2 -> tab.text = getString(R.string.descriptive_film)
-                else -> tab.text = ""
+                TabType.DOMESTIC_MOVIE.ordinal -> tab.text = getString(R.string.domestic_movie)
+                TabType.DESCRIPTIVE_MOVIE.ordinal -> tab.text = getString(R.string.descriptive_movie)
             }
 
         }.attach()

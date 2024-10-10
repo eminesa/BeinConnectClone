@@ -3,9 +3,9 @@
     <string name="back_button">Back Button</string>
     <string name="title">Title</string>
     <string name="movie">FILM</string>
-    <string name="foreign_film">Yabancı Film</string>
-    <string name="domestic_film">Yerli Film</string>
-    <string name="descriptive_film">Betimleme</string>
+    <string name="foreign_movie">Yabancı Film</string>
+    <string name="domestic_movie">Yerli Film</string>
+    <string name="descriptive_movie">Betimleme</string>
     <string name="media_url">https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8</string>
 
     <string name="previous_video">Previous video</string>
