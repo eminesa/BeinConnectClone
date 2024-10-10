@@ -35,7 +35,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::infl
                 }
 
                 1 -> tab.text = getString(R.string.domestic_film)
-                2 -> tab.text = getString(R.string.descriptive)
+                2 -> tab.text = getString(R.string.descriptive_film)
                 else -> tab.text = ""
             }
 
