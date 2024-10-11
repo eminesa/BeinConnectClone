@@ -23,8 +23,8 @@ class MovieListAdapter(
 
             binding.apply {
                 imgPoster.load(poster) {
-                    placeholder(R.drawable.ic_launcher_background)
-                    error(R.drawable.ic_back)
+                    placeholder(R.drawable.ic_placeholder)
+                    error(R.drawable.ic_placeholder)
                 }
                 txtTitle.text = resultItem.title
                 root.setOnClickListener {
