@@ -24,5 +24,6 @@
 
     <string name="something_went_wrong">Bir şeyler Hatalı</string>
     <string name="domestic">Working on Domestic</string>
+    <string name="check_internet_connection">İnternetinizi Kontrol Edin</string>
 
 </resources>
