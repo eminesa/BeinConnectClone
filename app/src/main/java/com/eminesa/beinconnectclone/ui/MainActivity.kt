@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             onLost = {
                 Toast.makeText(
                     this,
-                    getString(R.string.check_internet_connection), Toast.LENGTH_SHORT
+                    getString(R.string.check_internet_connection), Toast.LENGTH_LONG
                 ).show()
             }
         )

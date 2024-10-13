@@ -1,5 +1,7 @@
 package com.eminesa.beinconnectclone.ui.view.detail
 
+import android.content.pm.ActivityInfo
+import android.view.View
 import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
@@ -22,8 +24,9 @@ class MovieDetailFragment :
     private val viewModel: MovieDetailViewModel by viewModels()
 
     override fun FragmentMovieDetailBinding.bindScreen() {
-        initUI()
         observeViewModel()
+        setFullScreen(true)
+        initUI()
         initListeners()
     }
 
@@ -47,9 +50,9 @@ class MovieDetailFragment :
         lifecycleScope.launch {
             viewModel.isPlaying.collect { isPlaying ->
                 if (isPlaying) {
-                    playerView.player?.play()
-                } else {
                     playerView.player?.pause()
+                } else {
+                    playerView.player?.play()
                 }
             }
         }
@@ -66,7 +69,10 @@ class MovieDetailFragment :
         val exoPlayBtn = playerView.findViewById<ImageButton>(R.id.exo_play)
 
         closeImg.setOnClickListener {
+            setFullScreen(false)
+            viewModel.playerManager.getPlaybackPosition().let { viewModel.updatePlaybackPosition(0) }
             viewModel.playerManager.releasePlayer()
+
             findNavController().popBackStack()
         }
 
@@ -91,6 +97,20 @@ class MovieDetailFragment :
         }
     }
 
+    private fun setFullScreen(enable: Boolean) {
+        if (enable) {
+            requireActivity().window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_FULLSCREEN or View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
+            requireActivity().requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
+
+        } else {
+            requireActivity().apply {
+                // Portre modunu bırakma
+                requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_VISIBLE
+            }
+        }
+    }
+
     override fun onStop() {
         super.onStop()
         viewModel.playerManager.releasePlayer()
@@ -99,6 +119,7 @@ class MovieDetailFragment :
     override fun onDestroyView() {
         super.onDestroyView()
         viewModel.playerManager.releasePlayer()
+        setFullScreen(false)
     }
 
     override fun onPause() {
