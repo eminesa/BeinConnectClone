@@ -41,6 +41,10 @@ class PlayerManager(private val context: Context) {
 
     }
 
+    fun getPlaybackPosition(): Long {
+        return playbackPosition
+    }
+
     private fun playerListener() {
         exoPlayer?.addListener(object : Player.Listener {
             override fun onPlaybackStateChanged(playbackState: Int) {

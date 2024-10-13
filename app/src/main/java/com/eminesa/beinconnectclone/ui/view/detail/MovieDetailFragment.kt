@@ -4,42 +4,69 @@ import android.widget.ImageButton
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.view.isVisible
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.eminesa.beinconnectclone.R
-import com.eminesa.beinconnectclone.common.PlayerManager
 import com.eminesa.beinconnectclone.common.gone
 import com.eminesa.beinconnectclone.common.visible
 import com.eminesa.beinconnectclone.databinding.FragmentMovieDetailBinding
 import com.eminesa.beinconnectclone.ui.base.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MovieDetailFragment :
     BaseFragment<FragmentMovieDetailBinding>(FragmentMovieDetailBinding::inflate) {
 
-    private lateinit var exoPlayerManager: PlayerManager
+    private val viewModel: MovieDetailViewModel by viewModels()
 
     override fun FragmentMovieDetailBinding.bindScreen() {
-        initBinding()
-        initListener()
+        initUI()
+        observeViewModel()
+        initListeners()
     }
 
-    private fun FragmentMovieDetailBinding.initListener() {
-        exoPlayerManager.progressVisibleListener = { isProgressVisible ->
+    private fun FragmentMovieDetailBinding.initUI() {
+
+        viewModel.playerManager.preparePlayer(getString(R.string.media_url))
+        playerView.player = viewModel.playerManager.getPlayer()
+
+        val movieTitle = arguments?.getString("movieTitle")
+        playerView.findViewById<AppCompatTextView>(R.id.header_tv).text = movieTitle
+    }
+
+    private fun FragmentMovieDetailBinding.observeViewModel() {
+
+        lifecycleScope.launch {
+            viewModel.playbackPosition.collect { position ->
+                playerView.player?.seekTo(position)
+            }
+        }
+
+        lifecycleScope.launch {
+            viewModel.isPlaying.collect { isPlaying ->
+                if (isPlaying) {
+                    playerView.player?.play()
+                } else {
+                    playerView.player?.pause()
+                }
+            }
+        }
+    }
+
+    private fun FragmentMovieDetailBinding.initListeners() {
+
+        viewModel.playerManager.progressVisibleListener = { isProgressVisible ->
             progressBar.isVisible = isProgressVisible
         }
 
-        //exoplayer components listener // Bunu sonra custom yapıcam diger turlu
-        val headerTextView = playerView.findViewById<AppCompatTextView>(R.id.header_tv)
         val closeImg = playerView.findViewById<AppCompatImageView>(R.id.cross_im)
         val exoPauseBtn = playerView.findViewById<ImageButton>(R.id.exo_pause)
         val exoPlayBtn = playerView.findViewById<ImageButton>(R.id.exo_play)
 
-        val movieTitle = arguments?.getString("movieTitle")
-        headerTextView.text = movieTitle
-
         closeImg.setOnClickListener {
-            releasePlayer()
+            viewModel.playerManager.releasePlayer()
             findNavController().popBackStack()
         }
 
@@ -50,52 +77,33 @@ class MovieDetailFragment :
         exoPauseBtn.setOnClickListener {
             controlPlay(exoPauseBtn, exoPlayBtn)
         }
-
-    }
-
-    private fun FragmentMovieDetailBinding.initBinding() {
-        exoPlayerManager = PlayerManager(requireContext())
-        exoPlayerManager.apply {
-            preparePlayer(getString(R.string.media_url))
-            playerView.player = getPlayer()
-
-        }
     }
 
     private fun controlPlay(exoPauseBtn: ImageButton, exoPlayBtn: ImageButton) {
-        if (exoPlayerManager.isPlaying()) {
+        if (viewModel.playerManager.isPlaying()) {
             exoPlayBtn.visible()
             exoPauseBtn.gone()
-            exoPlayerManager.pause()
+            viewModel.togglePlayPause()
         } else {
             exoPlayBtn.gone()
             exoPauseBtn.visible()
-            exoPlayerManager.play()
+            viewModel.togglePlayPause()
         }
-    }
-
-    private fun releasePlayer() {
-        exoPlayerManager.releasePlayer()
     }
 
     override fun onStop() {
         super.onStop()
-        releasePlayer()
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        releasePlayer()
-    }
-
-    override fun onPause() {
-        super.onPause()
-        releasePlayer()
+        viewModel.playerManager.releasePlayer()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
-        releasePlayer()
+        viewModel.playerManager.releasePlayer()
     }
 
+    override fun onPause() {
+        super.onPause()
+        viewModel.playerManager.getPlaybackPosition().let { viewModel.updatePlaybackPosition(it) }
+        viewModel.playerManager.releasePlayer()
+    }
 }
