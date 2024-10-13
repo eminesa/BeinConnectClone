@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Bein Connect</string>
+    <string name="back_button">Geri Butonu</string>
+    <string name="title">Başlık</string>
+    <string name="movie">Film</string>
+    <string name="foreign_movie">Yabancı Film</string>
+    <string name="domestic_movie">Yerli Film</string>
+    <string name="descriptive_movie">Betimleme</string>
+    <string name="media_url">https://bitdash-a.akamaihd.net/content/sintel/hls/playlist.m3u8</string>
+
+    <string name="previous_video">Önceki video</string>
+    <string name="play_video">Video oynat</string>
+    <string name="pause_video">Video durdur</string>
+    <string name="next_video">Sonraki video</string>
+    <string name="ten_second_next">On saniye sonra</string>
+    <string name="ten_second_previous">On saniye önce</string>
+    <string name="full_screen">Tam ekran</string>
+
+    <string name="something_went_wrong">Bir şeyler Hatalı</string>
+    <string name="domestic">Domestic Üzerinde Çalışılıyor</string>
+    <string name="check_internet_connection">İnternetinizi Kontrol Edin</string>
+
+</resources>
